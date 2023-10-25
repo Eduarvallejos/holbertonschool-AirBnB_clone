@@ -1,48 +1,28 @@
 #!/usr/bin/python3
-"""
-Este modulo representa una clase BaseModel.
-"""
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
-    """
-    Este es una clase que define BaseModel.
-    """
-    def __init__(self):
-        """
-        Genera un ID único utilizando uuid4 y lo convierte en una cadena.
-        """
+    def __init__(self, *args, **kwargs):
+        """Inicializa una instancia de BaseModel."""
         self.id = str(uuid.uuid4())
-        """
-        Establece la fecha y hora de creación al momento actual en formato ISO.
-        """
-        self.created_at = datetime.datetime.now().isoformat()
-        """
-        Establece la fecha y hora de actualización al momento actual
-        en formato ISO.
-        """
-        self.updated_at = datetime.datetime.now().isoformat()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
-        """
-        Devuelve una representación en cadena del objeto.
-        Incluye el nombre de la clase, el ID y los atributos del objeto.
-        """
-        return f"[BaseModel] ({self.id}) {self.__dict__}"
+        """Devuelve una representación de cadena del objeto."""
+        return ("[{}] ({}) {}"
+                .format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
-        """
-        Actualiza la fecha y hora de actualización al momento actual
-        en formato ISO.
-        """
-        self.updated_at = datetime.datetime.now().isoformat()
+        """Actualiza el atributo updated_at con la fecha y hora actual."""
+        self.updated_at = datetime.now()
 
     def to_dict(self):
-        """
-        Agrega el nombre de la clase al diccionario y devuelve
-        todos los atributos en un diccionario.
-        """
-        self.__dict__["__class__"] = "BaseModel"
-        return self.__dict__
+        """Devuelve un diccionario con los atributos del objeto."""
+        obj_dict = self.__dict__.copy()
+        obj_dict['__class__'] = self.__class__.__name__
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
+        return obj_dict
