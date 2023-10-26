@@ -24,8 +24,8 @@ class BaseModel:
         al momento actual en formato ISO.
         """
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now().isoformat()
-        self.updated_at = datetime.now().isoformat()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """Devuelve una representación de cadena del objeto."""
@@ -33,7 +33,7 @@ class BaseModel:
 
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
-        self.updated_at = datetime.now().isoformat()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
