@@ -1,14 +1,30 @@
 #!/usr/bin/python3
+"""
+Este modulo representa una clase BaseModel.
+"""
 import uuid
 from datetime import datetime
 
 
 class BaseModel:
-    def __init__(self, *args, **kwargs):
-        """Inicializa una instancia de BaseModel."""
+    def __init__(self):
+        """
+        Inicializa una instancia de BaseModel.
+
+        Args:
+
+        Self.id: Genera un ID único utilizando uuid4 y
+        lo convierte en una cadena.
+
+        Self.created_at: Establece la fecha y hora de creación
+        al momento actual en formato ISO.
+
+        Self.updated_at: Establece la fecha y hora de actualización
+        al momento actual en formato ISO.
+        """
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = datetime.now().isoformat()
+        self.updated_at = datetime.now().isoformat()
 
     def __str__(self):
         """Devuelve una representación de cadena del objeto."""
@@ -17,12 +33,9 @@ class BaseModel:
 
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.now().isoformat()
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
-        obj_dict = self.__dict__.copy()
-        obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] = self.created_at.isoformat()
-        obj_dict['updated_at'] = self.updated_at.isoformat()
-        return obj_dict
+        self.__dict__["__class__"] = "BaseModel"
+        return self.__dict__
