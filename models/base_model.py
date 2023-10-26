@@ -28,8 +28,7 @@ class BaseModel:
 
     def __str__(self):
         """Devuelve una representación de cadena del objeto."""
-        return ("[{}] ({}) {}"
-                .format(self.__class__.__name__, self.id, self.__dict__))
+        return f"[BaseModel] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
