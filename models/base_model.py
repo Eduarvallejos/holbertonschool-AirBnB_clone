@@ -3,7 +3,8 @@
 Este modulo representa una clase BaseModel.
 """
 import uuid
-import datetime
+from datetime import datetime
+
 
 
 class BaseModel:
@@ -11,7 +12,7 @@ class BaseModel:
         """
         Inicializa una instancia de BaseModel.
 
-        Args:
+        Atributos:
 
         Self.id: Genera un ID único utilizando uuid4 y
         lo convierte en una cadena.
@@ -23,8 +24,8 @@ class BaseModel:
         al momento actual en formato ISO.
         """
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now().isoformat()
-        self.updated_at = datetime.datetime.now().isoformat()
+        self.created_at = datetime.now().isoformat()
+        self.updated_at = datetime.now().isoformat()
 
     def __str__(self):
         """Devuelve una representación de cadena del objeto."""
@@ -32,9 +33,12 @@ class BaseModel:
 
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
-        self.updated_at = datetime.datetime.now().isoformat()
+        self.updated_at = datetime.now().isoformat()
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
-        self.__dict__["__class__"] = "BaseModel"
-        return self.__dict__
+        my_dict = dict(self.__dict__)
+        my_dict['created_at'] = self.__dict__['created_at'].isoformat()
+        my_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
+        my_dict['__class__'] = self.__class__.__name__
+        return (my_dict)
