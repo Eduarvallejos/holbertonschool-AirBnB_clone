@@ -27,7 +27,7 @@ class BaseModel:
         """
         if Kwargs:
             for k, v in kwargs.items():
-                is k != "__class__":
+                if k != "__class__":
                     setattr(self, k, v)
             self.__dict__["created_at"] = datetime.strptime(
                 self.__dict__["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
