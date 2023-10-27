@@ -3,7 +3,7 @@
 Este modulo ase un test a nuestra clase BaseModel
 """
 import unittest
-from models.base_models import BaseModel
+from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
