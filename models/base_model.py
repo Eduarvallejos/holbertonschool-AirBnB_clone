@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class BaseModel:
-    def __init__(self, *args, **Kwargs):
+    def __init__(self, *args, **kwargs):
         """
         Inicializa una instancia de BaseModel.
 
@@ -25,7 +25,7 @@ class BaseModel:
         Args:
             **Kwargs: Resibe un diccionario:
         """
-        if Kwargs:
+        if kwargs:
             for k, v in kwargs.items():
                 if k != "__class__":
                     setattr(self, k, v)
