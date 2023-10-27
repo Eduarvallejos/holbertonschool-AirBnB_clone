@@ -6,25 +6,38 @@ import uuid
 from datetime import datetime
 
 
-
 class BaseModel:
-    def __init__(self):
+    def __init__(self, *args, **Kwargs):
         """
         Inicializa una instancia de BaseModel.
 
         Atributos:
 
-        Self.id: Genera un ID único utilizando uuid4 y
+        Id: Genera un ID único utilizando uuid4 y
         lo convierte en una cadena.
 
-        Self.created_at: Establece la fecha y hora de creación
+        Created_at: Establece la fecha y hora de creación
         al momento actual en formato ISO.
 
-        Self.updated_at: Establece la fecha y hora de actualización
+        Updated_at: Establece la fecha y hora de actualización
         al momento actual en formato ISO.
+
+        Args:
+            **Kwargs: Resibe un diccionario:
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
+        if Kwargs:
+            for k, v in kwargs.items():
+                is k != "__class__":
+                    setattr(self, k, v)
+            self.__dict__["created_at"] = datetime.strptime(
+                self.__dict__["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+
+            self.__dict__["updated_at"] = datetime.strptime(
+                self.__dict__["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
     def __str__(self):
