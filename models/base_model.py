@@ -4,6 +4,7 @@ Este modulo representa una clase BaseModel.
 """
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -47,6 +48,7 @@ class BaseModel:
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
@@ -54,4 +56,4 @@ class BaseModel:
         my_dict['created_at'] = self.__dict__['created_at'].isoformat()
         my_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
         my_dict['__class__'] = self.__class__.__name__
-        return (my_dict)
+        return my_dict
