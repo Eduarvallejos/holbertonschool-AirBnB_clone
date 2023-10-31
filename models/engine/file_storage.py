@@ -12,17 +12,17 @@ class FileStorage:
     Clase que gestiona el almacenamiento de objetos en un archivo JSON.
     """
     __file_path = "file.json"
-    __objects = {}    
+    __objects = {}
 
     def all(self):
         """
-        Devuelve todos los objetos almacenados.
+        Devuelve el diccionario de todos los objetos.
         """
         return FileStorage.__objects
 
     def new(self, obj):
         """
-        Agrega un nuevo objeto al almacenamiento.
+        Agrega un objeto al diccionario __objects.
 
         Args:
             obj: El objeto a agregar.
@@ -32,20 +32,27 @@ class FileStorage:
 
     def save(self):
         """
-        Guarda los objetos en el archivo JSON.
+        Serializa __objects en el archivo JSON.
         """
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
-            d = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
-            json.dump(FileStorage.__objects, f)
+        objetos_serializados = {}
+
+        for key, obj in FileStorage.__objects.items():
+            objetos_serializados[key] = obj.to_dict()
+
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump(objetos_serializados, f)
 
     def reload(self):
         """
-        Carga los objetos desde el archivo JSON y los almacena en el almacenamiento.
+        Deserializa el archivo JSON a __objects (si existe).
         """
-        if path.exists(FileStorage.__file_path):
-            return
-        with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+        try:
+
+            with open(FileStorage.__file_path, "r") as f:
                 obj_dict = json.load(f)
                 obj_dict = {k: self.classes()[v["__class__"]](**v)
-                        for k, v in obj_dict.items()}
+                            for k, v in obj_dict.items()}
                 FileStorage.__objects = obj_dict
+
+        except FileNotFoundError:
+            pass
