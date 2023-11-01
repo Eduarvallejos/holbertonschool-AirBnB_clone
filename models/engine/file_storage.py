@@ -34,8 +34,13 @@ class FileStorage:
         """
         Serializa __objects en el archivo JSON.
         """
-        with open(self.__file_path, "w") as f:
-            json.dumps(self.__objects, f)
+        objetos_serializados = {}
+
+        for key, obj in FileStorage.__objects.items():
+            objetos_serializados[key] = obj.to_dict()
+
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump(objetos_serializados, f)
 
     def reload(self):
         """
@@ -44,7 +49,7 @@ class FileStorage:
         try:
 
             with open(FileStorage.__file_path, "r") as f:
-                obj_dict = json.loads(f)
+                obj_dict = json.load(f)
                 FileStorage.__objects = obj_dict
 
         except FileNotFoundError:
