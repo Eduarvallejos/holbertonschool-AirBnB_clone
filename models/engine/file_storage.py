@@ -27,15 +27,15 @@ class FileStorage:
         Args:
             obj: El objeto a agregar.
         """
-        key = "{}.{}".format(type(obj).__name__, obj.id)
+         key = "{}.{}".format(type(obj).__name__, getattr(obj, 'id', str(id(obj)))
         FileStorage.__objects[key] = obj
 
     def save(self):
         """
         Serializa __objects en el archivo JSON.
         """
-        with open(self.__file_path, 'w') as file:
-            json.dump(self.__objects, file)
+        with open(self.__file_path, 'w') as f:
+            json.dump(self.__objects, f)
         
 
     def reload(self):
