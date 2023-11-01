@@ -40,7 +40,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-        storage.new(self)
+            storage.new(self)
 
     def __str__(self):
         """Devuelve una representación de cadena del objeto."""
@@ -49,7 +49,7 @@ class BaseModel:
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
         self.updated_at = datetime.now()
-        storage.save(self)
+        storage.save()
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
