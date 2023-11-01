@@ -34,7 +34,7 @@ class FileStorage:
         """
         Serializa __objects en el archivo JSON.
         """
-        with open(self.__file_path, 'w') as f:
+        with open(FileStorage.__file_path, 'w') as f:
             json.dump(self.__objects, f)
         
 
@@ -44,7 +44,7 @@ class FileStorage:
         """
         try:
 
-            with open(FileStorage.__file_path, "r") as f:
+            with open(self.__file_path, "r") as f:
                 obj_dict = json.load(f)
                 FileStorage.__objects = obj_dict
 
