@@ -49,7 +49,7 @@ class BaseModel:
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
         self.updated_at = datetime.now()
-        storage.save()
+        storage.save(self)
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
