@@ -36,8 +36,8 @@ class FileStorage:
         """
         objetos_serializados = {}
         
-        for key, obj in self.__objects.items():
-            objetos_serializados[key] = obj.to_dict()
+        for key, v in self.__objects.items():
+            objetos_serializados[key] = v.to_dict()
 
         with open(self.__file_path, 'w') as f:
             json.dump(objetos_serializados, f)
