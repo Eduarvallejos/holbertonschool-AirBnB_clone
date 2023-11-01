@@ -34,10 +34,11 @@ class FileStorage:
         """
         Serializa __objects en el archivo JSON.
         """
-        odict = FileStorage.__objects
-        objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(objdict, f)
+        for key, obj in FileStorage.__objects.items():
+            objetos_serializados[key] = obj.to_dict()
+
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump(objetos_serializados, f)
 
     def reload(self):
         """
