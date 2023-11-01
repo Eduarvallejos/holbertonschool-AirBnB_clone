@@ -48,7 +48,7 @@ class FileStorage:
         """
         try:
 
-            with open(Filestorage.__file_path, "r") as f:
+            with open(FileStorage.__file_path, "r") as f:
                 obj_dict = json.load(f)
                 FileStorage.__objects = obj_dict
 
