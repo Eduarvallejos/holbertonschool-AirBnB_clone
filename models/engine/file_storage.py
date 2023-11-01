@@ -27,7 +27,7 @@ class FileStorage:
         Args:
             obj: El objeto a agregar.
         """
-         key = "{}.{}".format(type(obj).__name__, getattr(obj, 'id', str(id(obj)))
+        key = "{}.{}".format(type(obj).__name__, getattr(obj, 'id', str(id(obj))))
         FileStorage.__objects[key] = obj
 
     def save(self):
