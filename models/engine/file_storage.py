@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import datetime
 import json
+from models.base_model import BaseModel
 from os import path
 """
 Se difine una class llamada FileStorage.
