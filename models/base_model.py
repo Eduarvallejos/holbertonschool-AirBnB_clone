@@ -30,9 +30,9 @@ class BaseModel:
             for k, v in kwargs.items():
                 if k != "__class__":
                     setattr(self, k, v)
+            
             self.__dict__["created_at"] = datetime.strptime(
                 self.__dict__["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-
             self.__dict__["updated_at"] = datetime.strptime(
                 self.__dict__["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
 
@@ -53,7 +53,7 @@ class BaseModel:
 
     def to_dict(self):
         """Devuelve un diccionario con los atributos del objeto."""
-        my_dict = dict(self.__dict__)
+        
         my_dict['created_at'] = self.__dict__['created_at'].isoformat()
         my_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
         my_dict['__class__'] = self.__class__.__name__
