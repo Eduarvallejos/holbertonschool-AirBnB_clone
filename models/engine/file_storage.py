@@ -34,13 +34,21 @@ class FileStorage:
         """
         Serializa __objects en el archivo JSON.
         """
-        with open(FileStorage.__file_path, 'w') as f:
-            json.dump(FileStorage.__objects, f)
+        odict = FileStorage.__objects
+        objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
+        with open(FileStorage.__file_path, "w") as f:
+            json.dump(objdict, f)
 
     def reload(self):
         """
         Deserializa el archivo JSON a __objects (si existe).
         """
-        if path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r') as f:
-                FileStorage.__objects = json.load(f)
+        try:
+            with open(FileStorage.__file_path) as f:
+                objdict = json.load(f)
+                for o in objdict.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
+        except FileNotFoundError:
+            return
