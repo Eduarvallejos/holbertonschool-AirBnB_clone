@@ -27,8 +27,8 @@ class FileStorage:
         Args:
             obj: El objeto a agregar.
         """
-        ocname = obj.__class__.__name__
-        FileStorage.__objects["{}.{}".format(ocname, obj.id)] = obj
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        FileStorage.__objects[key] = obj.to_dict()
 
     def save(self):
         """
