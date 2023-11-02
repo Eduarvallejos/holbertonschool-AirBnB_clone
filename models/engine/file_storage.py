@@ -36,7 +36,7 @@ class FileStorage:
         """
         data = {key: value for key, value in FileStorage.__objects.items()}
         with open(FileStorage.__file_path, 'w') as archivo:
-            archivo.write(json.dump(data))
+            json.dump(FileStorage.__objects, archivo)
 
     def reload(self):
         """
