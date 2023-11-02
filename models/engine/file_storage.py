@@ -36,7 +36,7 @@ class FileStorage:
         """
         data = {key: value for key, value in FileStorage.__objects.items()}
         with open(FileStorage.__file_path, 'w') as archivo:
-            archivo.write(json.dumps(data))
+            archivo.write(json.dump(data))
 
     def reload(self):
         """
@@ -44,7 +44,7 @@ class FileStorage:
         """
         try:
             with open(FileStorage.__file_path, 'r') as archivo:
-                data = json.loads(archivo.read())
+                data = json.load(archivo.read())
                 FileStorage.__objects = data
         except FileNotFoundError:
             return
