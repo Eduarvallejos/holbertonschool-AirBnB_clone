@@ -28,7 +28,7 @@ class FileStorage:
             obj: El objeto a agregar.
         """
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj.to_dict()
 
     def save(self):
         """
@@ -44,8 +44,7 @@ class FileStorage:
         try:
 
             with open(FileStorage.__file_path, "r") as f:
-                obj_dict = json.load(f)
-                FileStorage.__objects = obj_dict
+                FileStorage.__objects = json.load(f)
 
         except FileNotFoundError:
             pass
