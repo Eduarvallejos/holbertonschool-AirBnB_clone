@@ -5,13 +5,16 @@ from models.engine.file_storage import FileStorage
 
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
+        """Preparación para las pruebas: crea una instancia de FileStorage."""
         self.file_storage = FileStorage()
 
-    def test_all_returns_empty_dict_initially(self):
+    def test_all(self):
+        """Prueba si el método all() devuelve un diccionario vacío inicialmente."""
         objects = self.file_storage.all()
         self.assertEqual(objects, {})
 
-    def test_new_adds_object_to_objects_dict(self):
+    def test_new(self):
+        """Prueba si el método new() agrega un objeto al diccionario __objects."""
         class DummyObject:
             def __init__(self, id):
                 self.id = id
@@ -22,7 +25,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn('DummyObject.123', objects)
 
     @patch('builtins.open', new_callable=mock_open)
-    def test_save_serializes_objects_to_json_file(self, mock_file_open):
+    def test_save(self, mock_file_open):
+        """Prueba si el método save() serializa objetos en un archivo JSON."""
+        class DummyObject:
         class DummyObject:
             def __init__(self, id):
                 self.id = id
@@ -39,7 +44,8 @@ class TestFileStorage(unittest.TestCase):
         handle.write.assert_called_with('{"DummyObject.123": {"id": "123"}}')
 
     @patch('builtins.open', new_callable=mock_open, read_data='{"DummyObject.123": {"id": "123"}}')
-    def test_reload_deserializes_json_file_to_objects(self, mock_file_open):
+    def test_reload(self, mock_file_open):
+        """Prueba si el método reload() deserializa un archivo JSON en objetos."""
         self.file_storage.reload()
         objects = self.file_storage.all()
         self.assertIn('DummyObject.123', objects)
