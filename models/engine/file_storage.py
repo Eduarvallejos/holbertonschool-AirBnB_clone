@@ -28,24 +28,22 @@ class FileStorage:
             obj: El objeto a agregar.
         """
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        FileStorage.__objects[key] = obj.to_dict()
 
     def save(self):
         """
         Serializa __objects en el archivo JSON.
         """
-        with open(self.__file_path, 'w') as f:
-            json.dump(self.__objects,f)
+        data = {key: value for key, value in FileStorage.__objects.items()}
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump(FileStorage.__objects, f)
 
     def reload(self):
         """
         Deserializa el archivo JSON a __objects (si existe).
         """
         try:
-
-            with open(FileStorage.__file_path, "r") as f:
-                obj_dict = json.load(f)
-                FileStorage.__objects = obj_dict
-
+            with open(FileStorage.__file_path, 'r') as f:
+                FileStorage.__objects = json.load(f)
         except FileNotFoundError:
-            pass
+            return
