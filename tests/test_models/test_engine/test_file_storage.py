@@ -38,7 +38,7 @@ class TestFileStorage(unittest.TestCase):
         self.file_storage.new(dummy_obj)
         self.file_storage.save()
 
-        # Verify that the 'open' function was called with the correct arguments
+        """Verifica que la función 'open' se llamó con los argumentos correctos."""
         mock_file_open.assert_called_with('file.json', 'w')
         handle = mock_file_open()
         handle.write.assert_called_with('{"DummyObject.123": {"id": "123"}}')
