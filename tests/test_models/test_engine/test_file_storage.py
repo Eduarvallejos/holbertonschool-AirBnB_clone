@@ -37,9 +37,6 @@ class TestFileStorage(unittest.TestCase):
         Prueba si el método save() serializa objetos en un archivo JSON.
         """
         class DummyObject:
-            
-        class DummyObject:
-            
             def __init__(self, id):
                 self.id = id
             def to_dict(self):
