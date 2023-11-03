@@ -28,7 +28,7 @@ class FileStorage:
             obj: El objeto a agregar.
         """
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[key] = obj.to_dict()
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """
@@ -36,7 +36,7 @@ class FileStorage:
         """
         data = {key: value for key, value in FileStorage.__objects.items()}
         with open(FileStorage.__file_path, 'w') as f:
-            json.dump(FileStorage.__objects, f)
+            json.dump(data, f)
 
     def reload(self):
         """
@@ -44,6 +44,10 @@ class FileStorage:
         """
         try:
             with open(FileStorage.__file_path, 'r') as f:
-                FileStorage.__objects = json.load(f)
+                objeto_rec= json.load(f)
+                for k, v in objeto_rec.items():
+                    from models.base_model import BaseModel
+
+                    FileStorage.__objects[k] = BaseModel(**v)
         except FileNotFoundError:
             return
