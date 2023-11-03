@@ -54,7 +54,8 @@ class TestFileStorage(unittest.TestCase):
         handle = mock_file_open()
         handle.write.assert_called_with('{"Test.123": {"id": "123"}}')
 
-    @patch('builtins.open', call=mock_open, read='{"Test.123": {"id": "123"}}')
+    @patch('builtins.open', new_callable=mock_open,
+           read_data='{"Test.123": {"id": "123"}}')
     def test_reload(self, mock_file_open):
         """
         Prueba si el método reload() deserializa un archivo JSON en objetos.
