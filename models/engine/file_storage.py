@@ -45,11 +45,10 @@ class FileStorage:
         Deserializa el archivo JSON a __objects (si existe).
         """
         try:
-            with open(FileStorage.__file_path, 'r') as f:
-                objeto_rec= json.load(f)
+            with open(FileStorage.__file_path, 'r') as json_file:
+                objeto_rec= json.load(json_file)
                 for k, v in objeto_rec.items():
                     from models.base_model import BaseModel
-
                     FileStorage.__objects[k] = BaseModel(**v)
         except FileNotFoundError:
             return
