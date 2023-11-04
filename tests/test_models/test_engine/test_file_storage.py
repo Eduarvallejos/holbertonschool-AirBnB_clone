@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import unittest
-from unittest.mock import mock_open, patch
 from models.engine.file_storage import FileStorage
 
 
