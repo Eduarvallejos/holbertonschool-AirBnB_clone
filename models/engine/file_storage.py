@@ -18,8 +18,8 @@ class FileStorage:
          """
         Devuelve el diccionario de todos los objetos.
         """
-        return FileStorage.__objects
-
+        return Filestorage.__objects
+    
     def new(self, obj):
         """
         Agrega un objeto al diccionario __objects.
