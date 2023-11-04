@@ -41,6 +41,11 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             storage.new(self)
+
+    def __str__(self):
+        """Devuelve una representación de cadena del objeto."""
+        return f"[{self.__class__.__name__}] ({self.id}) "\
+            + str({k: v for k, v in self.__dict__.items() if k != '__class__'})
             
     def save(self):
         """Actualiza el atributo updated_at con la fecha y hora actual."""
@@ -54,7 +59,3 @@ class BaseModel:
         my_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
         my_dict['__class__'] = self.__class__.__name__
         return my_dict
-        
-    def __str__(self):
-        """Devuelve una representación de cadena del objeto."""
-        return f"[BaseModel] ({self.id}) {self.__dict__}"
