@@ -15,6 +15,10 @@ class HBNBCommand(cmd.Cmd):
         """Señal EOF para salir del programa"""
         return True
 
+    def do_help(self, arg):
+        """Mostrar ayuda para los comandos disponibles"""
+        cmd.Cmd.do_help(self, arg)
+
     def emtyline(self):
         """No hace nada al resibir una linea vacia."""
         pass
