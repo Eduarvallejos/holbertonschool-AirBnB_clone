@@ -57,4 +57,4 @@ class BaseModel:
         
     def __str__(self):
         """Devuelve una representación de cadena del objeto."""
-        return f"[BaseModel] ({self.id}) {self.__dict__}
+        return f"[BaseModel] ({self.id}) {self.__dict__}"
