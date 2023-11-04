@@ -1,26 +1,17 @@
-#!/usr/bin/python3
-<<<<<<< HEAD
+#!/usr/bin/python3 
+HEAD
 """Defines the HBnB console."""
 import cmd
 import re
-from shlex 
-import split
-from models 
-import storage
-from models.base_model 
-import BaseModel
-from models.user 
-import User
-from models.state 
-import State
-from models.city 
-import City
-from models.place 
-import Place
-from models.amenity 
-import Amenity
-from models.review 
-import Review
+from shlex import split
+from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 def parse(arg):
@@ -214,7 +205,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
-=======
+
 """Define la clase HBNBCommand."""
 import cmd
 
@@ -238,7 +229,7 @@ class HBNBCommand(cmd.Cmd):
     def emtyline(self):
         """No hace nada al resibir una linea vacia."""
         pass
->>>>>>> 83f866909f622c792342af2f853e597835626745
+ 83f866909f622c792342af2f853e597835626745
 
 
 if __name__ == "__main__":
