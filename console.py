@@ -13,7 +13,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """Señal EOF para salir del programa"""
-        print()
         return True
 
     def emtyline(self):
