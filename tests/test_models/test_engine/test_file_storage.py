@@ -20,49 +20,24 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
         """
-        Prueba si el método new() agrega un objeto al diccionario __objects.
+        Prueba si el método new() agrega un objeto al diccionario '__objects'.
         """
-        class Test:
-            def __init__(self, id):
-                self.id = id
+        storage = FileStorage()
+        new_object = BaseModel()
+        storage.new(new_object)
+        self.assertIn(f"BaseModel.{new_object.id}", storage.all())
 
-        dummy_obj = Test("123")
-        self.file_storage.new(dummy_obj)
-        objects = self.file_storage.all()
-        self.assertIn('DummyObject.123', objects)
-
-    @patch('builtins.open', new_callable=mock_open)
-    def test_save(self, mock_file_open):
+    def test_save_reload(self):
         """
-        Prueba si el método save() serializa objetos en un archivo JSON.
+        Prueba si el método 'save()' y 'reload()' funcionan correctamente.
         """
-        class Test:
-            def __init__(self, id):
-                self.id = id
-
-            def to_dict(self):
-                return {'id': self.id}
-
-        dummy_obj = Test("123")
-        self.file_storage.new(dummy_obj)
-        self.file_storage.save()
-
-        """
-        Verifica que la función 'open' se llamó con los argumentos correctos.
-        """
-        mock_file_open.assert_called_with('file.json', 'w')
-        handle = mock_file_open()
-        handle.write.assert_called_with('{"Test.123": {"id": "123"}}')
-
-    @patch('builtins.open', new_callable=mock_open,
-           read_data='{"Test.123": {"id": "123"}}')
-    def test_reload(self, mock_file_open):
-        """
-        Prueba si el método reload() deserializa un archivo JSON en objetos.
-        """
-        self.file_storage.reload()
-        objects = self.file_storage.all()
-        self.assertIn('Test.123', objects)
+        storage = FileStorage()
+        new_object = BaseModel()
+        storage.new(new_object)
+        storage.save()
+        reloaded_storage = FileStorage()
+        reloaded_storage.reload()
+        self.assertIn(f"BaseModel.{new_object.id}", reloaded_storage.all())
 
 
 if __name__ == '__main__':
