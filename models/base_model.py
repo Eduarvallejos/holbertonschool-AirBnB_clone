@@ -26,7 +26,7 @@ class BaseModel:
         Args:
             **Kwargs: Resibe un diccionario:
         """
-        if kwargs:
+        if bool(kwargs):
             for k, v in kwargs.items():
                 if k != "__class__":
                     setattr(self, k, v)

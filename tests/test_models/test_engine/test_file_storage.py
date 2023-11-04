@@ -25,7 +25,7 @@ class TestFileStorage(unittest.TestCase):
         new_object = BaseModel()
         storage.new(new_object)
         self.assertIn(f"BaseModel.{new_object.id}", storage.all())
-
+        
     def test_save_reload(self):
         """
         Prueba si el método 'save()' y 'reload()' funcionan correctamente.
