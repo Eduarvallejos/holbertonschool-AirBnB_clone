@@ -1,4 +1,4 @@
-#!/usr/bin/python3 
+#!/usr/bin/python3
 import cd
 import re
 from shlex import split
@@ -204,8 +204,6 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = v
         storage.save()
 
-"""Define la clase HBNBCommand."""
-
 
 import cmdi
 
@@ -213,8 +211,8 @@ import cmdi
 class HBNBCommand(cmd.Cmd):
 
 
-    """Esta clase hereda de cmd.cmd."""
-    prompt = "(hbnb) "
+ """Esta clase hereda de cmd.cmd."""
+  prompt = "(hbnb) "
 
     def do_quit(self, arg):
         """Salir de la consola HBNB."""
