@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Defines the FileStorage class."""
 import json
-from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -15,7 +14,12 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        return Filestorage.__objects
+        """
+        Retorna el contenido de .__objects.
+        Returns:
+            dict
+        """
+        return FileStorage.__objects
     
     def new(self, obj):
         """
