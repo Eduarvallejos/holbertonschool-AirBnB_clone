@@ -1,5 +1,5 @@
-#!/usr/bin/python3 i
-import cmd
+#!/usr/bin/python3 
+import cd
 import re
 from shlex import split
 from models import storage
