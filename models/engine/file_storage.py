@@ -15,9 +15,6 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-         """
-        Devuelve el diccionario de todos los objetos.
-        """
         return Filestorage.__objects
     
     def new(self, obj):
