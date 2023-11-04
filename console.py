@@ -1,6 +1,4 @@
-#!/usr/bin/python3 
-HEAD
-"""Defines the HBnB console."""
+#!/usr/bin/python3 i
 import cmd
 import re
 from shlex import split
@@ -207,10 +205,14 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
 """Define la clase HBNBCommand."""
-import cmd
+
+
+import cmdi
 
 
 class HBNBCommand(cmd.Cmd):
+
+
     """Esta clase hereda de cmd.cmd."""
     prompt = "(hbnb) "
 
