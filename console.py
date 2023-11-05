@@ -28,6 +28,16 @@ class HBNBCommand(cmd.Cmd):
     """Interprete de comandos"""
     prompt = "(hbnb) "
 
+    __classes = {
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amenity",
+        "Review"
+    }
+
     def default(self, arg):
         """Sintaxis por defecto del modulo cmd si la entrada no es valida"""
         argdict = {
