@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         Imprimir todas las instancias o instancias de una clase específica.
         """
         argl = parse(arg)
-        if len(argl) > 0 and argl[0] not in BaseModel:
+        if len(argl) > 0 and argl[0] not in models.classes:
             print("** class doesn't exist **")
         else:
             objl = []
