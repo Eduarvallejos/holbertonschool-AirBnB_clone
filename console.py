@@ -2,7 +2,7 @@
 """Definimos la clase HBNBCommand."""
 import cmd
 import re
-import shlex
+from shlex import split
 from models import storage
 from models.base_model import BaseModel
 
