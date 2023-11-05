@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Definimos la clase HBNBCommand."""
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,12 +24,28 @@ class HBNBCommand(cmd.Cmd):
         """Crea una nueva instancia de BaseModel, la guarda (en el archivo JSON) e imprime el ID."""
         if not arg:
             print("** class name missing **")
-        elif arg not in HBNBCommand.__classes:
+        elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            new_instance = HBNBCommand.__classes[arg]()
+            new_instance = HBNBCommand.classes[arg]()
             new_instance.save()
             print(new_instance.id)
+
+    def do_show(self, arg):
+        """Print the string representation of an instance"""
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        else:
+            key = args[0] + "." + args[1]
+            if key in models.storage.all():
+                print(models.storage.all()[key])
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
