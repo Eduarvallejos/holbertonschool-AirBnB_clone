@@ -27,7 +27,6 @@ def parse(arg):
 class HBNBCommand(cmd.Cmd):
     """Interprete de comandos"""
     prompt = "(hbnb) "
-
     __classes = {
         "BaseModel",
         "User",
