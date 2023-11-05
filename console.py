@@ -67,6 +67,8 @@ class HBNBCommand(cmd.Cmd):
         argl = parse(arg)
         if len(argl) == 0:
             print("** class name missing **")
+        elif argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
         else:
             print(eval(argl[0])().id)
             storage.save()
@@ -88,21 +90,17 @@ class HBNBCommand(cmd.Cmd):
         """
         Destroy an instance based on the class name and id.
         """
-        args = shlex.split(arg)
-        if not args:
+        argl = parse(arg)
+        objdict = storage.all()
+        if len(argl) == 0:
             print("** class name missing **")
-        elif args[0] not in storage.classes:
-            print("** class doesn't exist **")
-        elif len(args) < 2:
+        elif len(argl) == 1:
             print("** instance id missing **")
+        elif "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
+            print("** no instance found **")
         else:
-            obj_id = args[1]
-            obj = storage.get(args[0], obj_id)
-            if obj is None:
-                print("** no instance found **")
-            else:
-                storage.delete(obj)
-                storage.save()
+            del objdict["{}.{}".format(argl[0], argl[1])]
+            storage.save()
 
     def do_all(self, arg):
         """
