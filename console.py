@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Definimos la clase HBNBCommand."""
 import cmd
+import re
 import shlex
 from models import storage
 from models.base_model import BaseModel
