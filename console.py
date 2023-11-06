@@ -35,6 +35,7 @@ def parse(arg):
         retl.append(dot1.group())
         return retl
 
+
 class HBNBCommand(cmd.Cmd):
     """Interprete de comandos."""
     prompt = "(hbnb) "
