@@ -9,8 +9,8 @@ class TestFileStorage(unittest.TestCase):
         """
         Preparación para las pruebas: crea una instancia de FileStorage.
         """
-        self.file_storage = FileStorage()
         self.maxDiff = None
+        self.file_storage = FileStorage()
 
     def test_all(self):
         """
