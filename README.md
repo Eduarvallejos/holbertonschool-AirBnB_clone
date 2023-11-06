@@ -81,7 +81,7 @@ $
 ## Comandos:
 ##Comandos basicos:
 
-ayuda: muestra la ayuda de la consola.
+help: muestra la ayuda de la consola.
 
 ```bash
 (hbnb) help
