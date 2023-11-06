@@ -1,7 +1,6 @@
 # AirBnB clone - The console
 
-![Holberton Peru]
-(logo.png')
+![HolbertonBnB logo](logo.png)
 
 ## Índice
 1. ![Descripción del Proyecto]
