@@ -96,11 +96,13 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, arg):
-        """Print the string representation of an instance"""
+        """Imprime la representación de cadena de una instancia"""
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
+        elif argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
         elif len(argl) == 1:
             print("** instance id missing **")
         elif "{}.{}".format(argl[0], argl[1]) not in objdict:
@@ -110,12 +112,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-        Destroy an instance based on the class name and id.
+        Destruir una instancia basada en el nombre de la clase y el id.
         """
         argl = parse(arg)
         objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
+        elif not argl[0] in HBNBCommand.__classes:
+            print("** class doesn't exist **")
         elif len(argl) == 1:
             print("** instance id missing **")
         elif "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
