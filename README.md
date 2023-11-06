@@ -91,3 +91,16 @@ Documented commands (type help <topic>):
 EOF  all  count  create  destroy  help  quit  show  update
 
 (hbnb)
+```
+EOF: para salir mediante señal (ctrl-D).
+```bash
+$ ./console.py
+(hbnb) EOF
+$
+```
+quit: Para salir de la consola
+```bash
+$ ./console.py
+(hbnb) quit
+$
+```
