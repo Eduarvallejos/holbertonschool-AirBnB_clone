@@ -20,7 +20,7 @@ class FileStorage:
             dict
         """
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """
         Agrega un objeto al diccionario __objects.
@@ -47,9 +47,26 @@ class FileStorage:
         """
         try:
             with open(FileStorage.__file_path, 'r') as json_file:
-                objeto_rec= json.load(json_file)
+                objeto_rec = json.load(json_file)
                 for k, v in objeto_rec.items():
                     from models.base_model import BaseModel
                     FileStorage.__objects[k] = BaseModel(**v)
         except FileNotFoundError:
             return
+
+    def attributes(self):
+        """Devuelve un diccionario de atributos para diferentes clases."""
+        attributes = {
+            "BaseModel": {
+                "id": str,
+                "created_at": datetime.datetime,
+                "updated_at": datetime.datetime
+                 },
+            "User": {
+                "email": str,
+                "password": str,
+                "first_name": str,
+                "last_name": str
+                 },
+        }
+        return attributes
