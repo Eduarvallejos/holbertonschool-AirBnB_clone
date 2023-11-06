@@ -5,6 +5,17 @@ import re
 from shlex import split
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+"""
+Esta función toma una cadena busca la presencia de llaves o corchetes
+divide la cadena y elimina las comas de los elementos para luego
+agregarlo al final de la lista resultante.
+"""
 
 
 def parse(arg):
@@ -25,7 +36,7 @@ def parse(arg):
         return retl
 
 class HBNBCommand(cmd.Cmd):
-    """Interprete de comandos"""
+    """Interprete de comandos."""
     prompt = "(hbnb) "
     __classes = {
         "BaseModel",
@@ -38,7 +49,9 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def default(self, arg):
-        """Sintaxis por defecto del modulo cmd si la entrada no es valida"""
+        """
+        Sintaxis por defecto del modulo cmd si la entrada no es valida.
+        """
         argdict = {
             "all": self.do_all,
             "show": self.do_show,
