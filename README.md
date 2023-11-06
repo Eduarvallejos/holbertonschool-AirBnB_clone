@@ -26,7 +26,10 @@ Para empezar, clona el repositorio:
 ```bash
 https://github.com/Eduarvallejos/holbertonschool-AirBnB_clone
 
+```
 Ingrese al directorio holbertonschool-AirBnB_clone y ejecute el comando:
 
 ```bash
 ./console.py
+
+```
