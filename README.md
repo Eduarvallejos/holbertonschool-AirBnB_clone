@@ -1,6 +1,6 @@
 # AirBnB clone - The console
 
-![HolbertonBnB logo](logo.png)
+![HolbertonBnB logo]('/d/EDUAR/imagenes holberton/hbnb_logo.png')
 
 ## Índice
 1. Descripción del Proyecto
@@ -80,6 +80,14 @@ $
 ###Uso:
 ## Comandos:
 ##Comandos basicos:
-.ayuda: muestra la ayuda de la consola.
 
-```
+ayuda: muestra la ayuda de la consola.
+
+```bash
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb)
