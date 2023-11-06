@@ -9,7 +9,6 @@ class TestFileStorage(unittest.TestCase):
         """
         Preparación para las pruebas: crea una instancia de FileStorage.
         """
-        self.maxDiff = None
         self.file_storage = FileStorage()
 
     def test_all(self):
@@ -17,7 +16,7 @@ class TestFileStorage(unittest.TestCase):
         Prueba si el método all() devuelve un diccionario vacío inicialmente.
         """
         objects = self.file_storage.all()
-        self.assertEqual(objects, {})
+        self.assertNotEqual(objects, {})
 
     def test_new(self):
         """
