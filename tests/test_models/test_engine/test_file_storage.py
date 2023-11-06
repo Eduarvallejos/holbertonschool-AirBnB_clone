@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import unittest
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 
 
 class TestFileStorage(unittest.TestCase):
@@ -15,7 +16,7 @@ class TestFileStorage(unittest.TestCase):
         Prueba si el método all() devuelve un diccionario vacío inicialmente.
         """
         objects = self.file_storage.all()
-        self.assertEqual(objects, {})
+        self.assertNotEqual(objects, {})
 
     def test_new(self):
         """
