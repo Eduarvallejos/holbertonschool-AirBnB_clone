@@ -26,6 +26,7 @@ class TestBaseModel(unittest.TestCase):
         model = BaseModel()
         original_updated_at = model.updated_at
         model.save()
+        self.assertEqual(original_updated_at, model.updated_at)
         new_updated_at = model.updated_at
         self.assertGreater(new_updated_at, original_updated_at)
 
